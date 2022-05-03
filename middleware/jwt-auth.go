@@ -51,7 +51,7 @@ func Admin() gin.HandlerFunc {
 				log.Println("=Claims[IssuedAt]: ", claims["iat"])
 				log.Println("=Claims[ExpiresAt]: ", claims["exp"])
 			} else {
-				c.AbortWithStatus(http.StatusUnauthorized)
+				c.AbortWithStatusJSON(http.StatusUnauthorized, "Unauthorized")
 			}
 		} else {
 			log.Println(err)

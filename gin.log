@@ -18,11 +18,4 @@
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8000
-::1 - [03 May 22 13:32 +07] POST /api/video 200 3.1038ms 
-::1 - [03 May 22 13:32 +07] GET /api/video 200 1.8801ms 
-::1 - [03 May 22 13:33 +07] POST /login 200 1.0642ms 
-::1 - [03 May 22 13:33 +07] GET /api/video 401 3.2553ms 
-::1 - [03 May 22 13:33 +07] POST /api/video 401 678.8µs 
-::1 - [03 May 22 13:34 +07] POST /api/video 401 1.1328ms 
-::1 - [03 May 22 13:34 +07] POST /api/video 401 801.5µs 
-::1 - [03 May 22 13:35 +07] POST /api/video 401 1.1501ms 
+::1 - [03 May 22 15:09 +07] GET /api/video 401 2.0604ms 
