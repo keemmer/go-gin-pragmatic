@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"go_gin_pragmatic/controller"
 	"go_gin_pragmatic/middleware"
 	"go_gin_pragmatic/service"
@@ -13,8 +14,12 @@ import (
 )
 
 var (
-	videoService    service.VideoService       = service.New()
+	videoService service.VideoService = service.New()
+	loginService service.LoginService = service.NewLoginService()
+	jwtService   service.JWTService   = service.NewJWTService()
+
 	videoController controller.VideoController = controller.New(videoService)
+	loginController controller.LoginController = controller.NewLoginController(loginService, jwtService)
 )
 
 func setupLogOutput() {
@@ -40,9 +45,21 @@ func main() {
 	server.Static("/css", "./templates/css/")
 	server.LoadHTMLGlob("templates/*.html")
 
-	apiRoutes := server.Group("api")
+	server.POST("/login", func(ctx *gin.Context) {
+		token := loginController.Login(ctx)
+		if token != "" {
+			ctx.JSON(http.StatusOK, gin.H{
+				"token": token,
+			})
+		} else {
+			ctx.JSON(http.StatusUnauthorized, nil)
+		}
+	})
+
+	apiRoutes := server.Group("api", middleware.AuthorizeJWT(), middleware.Admin())
 	{
 		apiRoutes.GET("/video", func(c *gin.Context) {
+			fmt.Println(c)
 			c.JSON(200, videoController.FindAll())
 		})
 		apiRoutes.POST("/video", func(c *gin.Context) {
@@ -50,7 +67,6 @@ func main() {
 			if err != nil {
 				c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			} else {
-
 				c.JSON(http.StatusOK, gin.H{"message": "Video input is Valid!!"})
 			}
 		})
@@ -58,7 +74,7 @@ func main() {
 
 	viewRoutes := server.Group("/view")
 	{
-		viewRoutes.GET("/videos",videoController.ShowAll)
+		viewRoutes.GET("/videos", videoController.ShowAll)
 	}
 
 	server.Run(":8000")
