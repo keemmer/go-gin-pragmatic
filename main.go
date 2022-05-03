@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"go_gin_pragmatic/controller"
 	"go_gin_pragmatic/middleware"
+	"go_gin_pragmatic/repository"
 	"go_gin_pragmatic/service"
 	"io"
 	"net/http"
@@ -14,7 +15,8 @@ import (
 )
 
 var (
-	videoService service.VideoService = service.New()
+	videoRepository repository.VideoRepository = repository.NewVideoRepository()
+	videoService service.VideoService = service.New(videoRepository)
 	loginService service.LoginService = service.NewLoginService()
 	jwtService   service.JWTService   = service.NewJWTService()
 
@@ -29,6 +31,7 @@ func setupLogOutput() {
 }
 
 func main() {
+	defer videoRepository.CloseDB()
 	setupLogOutput()
 
 	// server := gin.Default()
@@ -74,7 +77,7 @@ func main() {
 
 	viewRoutes := server.Group("/view")
 	{
-		viewRoutes.GET("/videos", videoController.ShowAll)
+		viewRoutes.GET("/videos", videoController.ShowView)
 	}
 
 	server.Run(":8000")
