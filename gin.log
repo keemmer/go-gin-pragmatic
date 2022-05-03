@@ -1,0 +1,41 @@
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /                         --> main.main.func1 (3 handlers)
+[GIN-debug] GET    /css/*filepath            --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+[GIN-debug] HEAD   /css/*filepath            --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+[GIN-debug] Loaded HTML Templates (4): 
+	- index.html
+	- 
+	- footer.html
+	- header.html
+
+[GIN-debug] GET    /api/video                --> main.main.func2 (3 handlers)
+[GIN-debug] POST   /api/video                --> main.main.func3 (3 handlers)
+[GIN-debug] GET    /view/videos              --> go_gin_pragmatic/controller.VideoController.ShowAll-fm (3 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8000
+::1 - [02 May 22 19:57 +07] GET /view/videos 200 2.6845ms 
+::1 - [02 May 22 19:57 +07] POST /api/video 200 998.2µs 
+::1 - [02 May 22 19:57 +07] GET /view/videos 200 1.5602ms 
+::1 - [02 May 22 19:58 +07] GET /view/videos 200 998.2µs 
+::1 - [02 May 22 19:58 +07] GET /favicon.ico 404 0s 
+::1 - [02 May 22 19:58 +07] GET /view/videos 200 5.6365ms 
+::1 - [02 May 22 19:58 +07] GET /view/videos 200 2.0021ms 
+::1 - [02 May 22 19:59 +07] GET /view/videos 200 985.5µs 
+::1 - [02 May 22 19:59 +07] GET /favicon.ico 404 0s 
+::1 - [02 May 22 19:59 +07] POST /api/video 200 0s 
+::1 - [02 May 22 19:59 +07] POST /api/video 200 0s 
+::1 - [02 May 22 19:59 +07] POST /api/video 200 0s 
+::1 - [02 May 22 19:59 +07] POST /api/video 200 546.2µs 
+::1 - [02 May 22 19:59 +07] POST /api/video 200 346.3µs 
+::1 - [02 May 22 19:59 +07] POST /api/video 200 986.5µs 
+::1 - [02 May 22 19:59 +07] POST /api/video 200 0s 
+::1 - [02 May 22 19:59 +07] POST /api/video 200 927.3µs 
+::1 - [02 May 22 19:59 +07] GET /view/videos 200 0s 
+::1 - [02 May 22 19:59 +07] GET /view/videos 200 5.9978ms 
+::1 - [02 May 22 19:59 +07] GET /favicon.ico 404 0s 
+::1 - [02 May 22 20:00 +07] GET /view/videos 200 3.9989ms 
+::1 - [02 May 22 20:02 +07] GET /view/videos 200 4.5704ms 
